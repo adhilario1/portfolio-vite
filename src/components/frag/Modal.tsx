@@ -1,4 +1,5 @@
-import React, { ReactElement, useState } from "react";
+//import React from 'react'
+import { ReactElement, useState } from "react";
 
 import './../css/Modal.css'
 import { type posts } from './../../API';

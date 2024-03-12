@@ -10,6 +10,7 @@ interface Props {
 
 const Exhibit = ({breakpoint}: Props) => {
     const {exhibitID} = useParams()
+    if (exhibitID) console.log(exhibitID);
     return (
         <>
         <Header breakpoint={breakpoint}/>

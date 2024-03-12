@@ -13,7 +13,7 @@ import Modal from './frag/Modal';
 import './css/Gallery.css'
 
 //data 
-import local_posts from './../assets/data/posts.json'
+//import local_posts from './../assets/data/posts.json'
 
 const client = generateClient();
 
@@ -42,9 +42,10 @@ const Gallery = ({breakpoint}: Props) => {
         }
     }
     /********************/
-    const [sortKey, setSortKey] = useState('');
+    
+    //const [sortKey, setSortKey] = useState('');
     const [filter, setFilter] = useState('');
-    const [filteredData, setFilteredData] = useState(local_posts);
+    //const [filteredData, setFilteredData] = useState(local_posts);
 
     const handleFilterChange = (event: React.FormEvent<HTMLSelectElement>) => {
         event.preventDefault();
@@ -53,13 +54,15 @@ const Gallery = ({breakpoint}: Props) => {
         filterData(safeSearchTypeValue);
     };
 
+    
     const filterData = (filter: string) => {
-        const filteredData = local_posts.filter((item) => 
-            item.discipline.toLowerCase().includes(filter.toLowerCase())
+        const filteredData = posts_data.filter((item) => 
+            item.discipline?.toLowerCase().includes(filter.toLowerCase())
         );
-        setFilteredData(filteredData);
+        setPosts(filteredData);
     };
-
+    
+    /*
     const handleSortChange = (event: React.FormEvent<HTMLSelectElement>) => {
         event.preventDefault();
         var sortParam: string = event.currentTarget.value;
@@ -67,6 +70,7 @@ const Gallery = ({breakpoint}: Props) => {
         sortData(sortParam);
     }
 
+    
     const sortData = (sort: string) => {
         const sortedData = local_posts.sort((a, b) =>
             {
@@ -147,9 +151,9 @@ const Gallery = ({breakpoint}: Props) => {
             }
             
         );
-        setFilteredData(sortedData);
+        setPosts(sortedData);
     };
-    
+    */
     return (
         <div>
             <Header breakpoint={breakpoint}/>        
@@ -168,6 +172,7 @@ const Gallery = ({breakpoint}: Props) => {
                             <option value={"vid-prod"}>Video Production</option>
                             <option value={"web-dev"}>Web Dev</option>
                         </select>
+                        {/*
                         <select className='dropdown sort' value={sortKey} onChange={handleSortChange}>
                             <option value={""}>---</option>
                             <option value={"year"}>Year</option>
@@ -175,6 +180,7 @@ const Gallery = ({breakpoint}: Props) => {
                             <option value={"type"}>Format</option>
                             <option value={"discipline"}>Discipline</option>
                         </select>
+                        */}
                     </div>
                     <div className='viewport-container'>
                         <ul>

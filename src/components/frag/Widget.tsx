@@ -1,6 +1,6 @@
-import React from 'react'
+//import React from 'react'
 
-import { Game } from '../../models/Game'
+//import { Game } from '../../models/Game'
 
 interface Props {
     className?: string;
