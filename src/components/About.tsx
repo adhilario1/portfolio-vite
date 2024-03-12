@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Header";
-import '../css/About.css'
+import Header from "./Header";
+import './css/About.css'
 
 interface Props {
     breakpoint?: number;

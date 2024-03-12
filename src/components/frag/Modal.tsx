@@ -1,7 +1,8 @@
 import React, { ReactElement, useState } from "react";
 
 import './../css/Modal.css'
-import { Post } from "../../models/Post";
+import { type posts } from './../../API';
+//import { Post } from "../../models/Post";
 import { Game } from "../../models/Game";
 
 import useWindowDimensions from "../code/WindowDimensions";
@@ -10,7 +11,7 @@ import game_thumbnail from './../../assets/images/controller.png'
 
 interface Props {
     className?: string;
-    post?: Post;
+    post?: posts;
     game?: Game;
     breakpoint?:number;
     //onClose: Function;

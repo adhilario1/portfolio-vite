@@ -1,7 +1,6 @@
 import React from "react";
 import useWindowDimensions from "./code/WindowDimensions";
 import SideBar from "./frag/SideBar";
-import NavLinks from "./frag/NavLinks";
 import NavBar from "./frag/NavBar";
 
 import './css/Header.css'

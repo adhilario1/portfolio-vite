@@ -1,166 +1,212 @@
-import { useEffect, useState } from 'react';
+//react
+import React, { useEffect, useState } from 'react';
 
+//aws
 import { generateClient } from 'aws-amplify/api';
-
-import { createPosts } from './../graphql/mutations';
 import { listPosts } from './../graphql/queries';
-import { type CreatePostsInput, type posts } from './../API';
+import { type posts } from './../API';
+//custom
+import Header from './Header';
+import Modal from './frag/Modal';
 
-const initialState: CreatePostsInput = { 
-    title: '',
-    description: '',
-    year: null,
-    discipline: '',
-    project: '',
-    type: '',
-    thumbnail_url: '',
-    url: ''
-};
+//style
+import './css/Gallery.css'
+
+//data 
+import local_posts from './../assets/data/posts.json'
+
 const client = generateClient();
 
-const Gallery = () => {
-  const [formState, setFormState] = useState<CreatePostsInput>(initialState);
-  const [posts, setPosts] = useState<posts[] | CreatePostsInput[]>([]);
+interface Props {
+    breakpoint?: number;
+}
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+const Gallery = ({breakpoint}: Props) => {
+    // fetch data babes
+    
+    const [posts_data, setPosts] = useState<posts[]>([]);
 
-  async function fetchTodos() {
-    try {
-      const postsData = await client.graphql({
-        query: listPosts,
-      });
-      const _posts = postsData.data.listPosts.items;
-      setPosts(_posts);
-    } catch (err) {
-      console.log('error fetching todos');
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    async function fetchPosts() {
+        try {
+        const postsData = await client.graphql({
+            query: listPosts,
+        });
+        const _posts = postsData.data.listPosts.items;
+        setPosts(_posts);
+        } catch (err) {
+        console.log('error fetching todos');
+        }
     }
-  }
+    /********************/
+    const [sortKey, setSortKey] = useState('');
+    const [filter, setFilter] = useState('');
+    const [filteredData, setFilteredData] = useState(local_posts);
 
-  async function addTodo() {
-    try {
-      if (!formState.title || !formState.description) return;
-      const post = { ...formState };
-      setPosts([...posts, post]);
-      setFormState(initialState);
-      await client.graphql({
-        query: createPosts,
-        variables: {
-          input: post,
-        },
-      });
-    } catch (err) {
-      console.log('error creating todo:', err);
+    const handleFilterChange = (event: React.FormEvent<HTMLSelectElement>) => {
+        event.preventDefault();
+        var safeSearchTypeValue: string = event.currentTarget.value;
+        setFilter(safeSearchTypeValue);
+        filterData(safeSearchTypeValue);
+    };
+
+    const filterData = (filter: string) => {
+        const filteredData = local_posts.filter((item) => 
+            item.discipline.toLowerCase().includes(filter.toLowerCase())
+        );
+        setFilteredData(filteredData);
+    };
+
+    const handleSortChange = (event: React.FormEvent<HTMLSelectElement>) => {
+        event.preventDefault();
+        var sortParam: string = event.currentTarget.value;
+        setSortKey(sortParam);
+        sortData(sortParam);
     }
-  }
 
-  return (
-    <div style={styles.container}>
-      <h2>Amplify Todos</h2>
-      <input
-        onChange={(event) =>
-          setFormState({ ...formState, title: event.target.value })
-        }
-        style={styles.input}
-        value={formState.title}
-        placeholder="title"
-      />
-      <input
-        onChange={(event) =>
-          setFormState({ ...formState, description: event.target.value })
-        }
-        style={styles.input}
-        value={formState.description as string}
-        placeholder="description"
-      />
-      <input type='number'
-        onChange={(event) =>
-          setFormState({ ...formState, year: event.target.valueAsNumber })
-        }
-        style={styles.input}
-        value={formState.year as number}
-        placeholder="year"
-      />
-      <input
-        onChange={(event) =>
-          setFormState({ ...formState, discipline: event.target.value })
-        }
-        style={styles.input}
-        value={formState.discipline as string}
-        placeholder="discipline"
-      />
-      <input
-        onChange={(event) =>
-          setFormState({ ...formState, project: event.target.value })
-        }
-        style={styles.input}
-        value={formState.project as string}
-        placeholder="project"
-      />
-      <input
-        onChange={(event) =>
-          setFormState({ ...formState, type: event.target.value })
-        }
-        style={styles.input}
-        value={formState.type as string}
-        placeholder="type"
-      />
-      <input
-        onChange={(event) =>
-          setFormState({ ...formState, thumbnail_url: event.target.value })
-        }
-        style={styles.input}
-        value={formState.thumbnail_url as string}
-        placeholder="thumbnail_url"
-      />
-      <input
-        onChange={(event) =>
-          setFormState({ ...formState, url: event.target.value })
-        }
-        style={styles.input}
-        value={formState.url as string}
-        placeholder="url"
-      />
-      <button style={styles.button} onClick={addTodo}>
-        Create Post
-      </button>
-      {posts.map((post, index) => (
-        <div key={post.id ? post.id : index} style={styles.todo}>
-          <p style={styles.todoName}>{post.title}</p>
-          <p style={styles.todoDescription}>{post.description}</p>
+    const sortData = (sort: string) => {
+        const sortedData = local_posts.sort((a, b) =>
+            {
+                if (sort==="title") {
+                    if (a.title < b.title) {
+                        return -1;
+                    } else if (a.title > b.title) {
+                        return 1;
+                    } else {
+                        if (a.year < b.year) return -1
+                        else if (a.year > b.year) return 1
+                        else {
+                            if (a.id < b.id ) return -1
+                            else return 1;
+                        }
+                    }
+                } else if (sort==="discipline"){
+                    if (a.discipline < b.discipline) return -1
+                    else if (a.discipline > b.discipline) return 1
+                    else {
+                        if (a.title < b.title) {
+                            return -1;
+                        } else if (a.title > b.title) {
+                            return 1;
+                        } else {
+                            if (a.year < b.year) return -1
+                            else if (a.year > b.year) return 1
+                            else {
+                                if (a.id < b.id ) return -1
+                                else return 1;
+                            }
+                        }
+                    }
+                } else if (sort==="type"){
+                    if (a.type < b.type) return -1
+                    else if (a.type > b.type) return 1
+                    else {
+                        if (a.title < b.title) {
+                            return -1;
+                        } else if (a.title > b.title) {
+                            return 1;
+                        } else {
+                            if (a.year < b.year) return -1
+                            else if (a.year > b.year) return 1
+                            else {
+                                if (a.id < b.id ) return -1
+                                else return 1;
+                            }
+                        }
+                    }
+                } else if (sort==="type") {
+                    if (a.year < b.year) {
+                        return -1;
+                    } else if (a.year > b.year) {
+                        return 1;
+                    } else {
+                        if (a.title < b.title) return -1
+                        else if (a.title > b.title) return 1
+                        else {
+                            if (a.id < b.id ) return -1
+                            else return 1;
+                        }
+                    }
+                } else {
+                    if (a.year < b.year) {
+                        return -1;
+                    } else if (a.year > b.year) {
+                        return 1;
+                    } else {
+                        if (a.title < b.title) return -1
+                        else if (a.title > b.title) return 1
+                        else {
+                            if (a.id < b.id ) return -1
+                            else return 1;
+                        }
+                    }
+                }
+            }
+            
+        );
+        setFilteredData(sortedData);
+    };
+    
+    return (
+        <div>
+            <Header breakpoint={breakpoint}/>        
+            <div className='content'>
+                <div className='gallery'>
+                    <div className='subheader'>
+                        <div className='text'>
+                            <h1>Gallery.</h1>
+                            <h2>{filter}</h2>
+                        </div>
+                        <div className='spacer' />
+                        <select className='dropdown filter' value={filter} onChange={handleFilterChange}>
+                            <option value={""}>All</option>
+                            <option value={"3d-modelling"}>3D Modeling</option>
+                            <option value={"graphic-design"}>Graphic Design</option>
+                            <option value={"vid-prod"}>Video Production</option>
+                            <option value={"web-dev"}>Web Dev</option>
+                        </select>
+                        <select className='dropdown sort' value={sortKey} onChange={handleSortChange}>
+                            <option value={""}>---</option>
+                            <option value={"year"}>Year</option>
+                            <option value={"title"}>Title</option>
+                            <option value={"type"}>Format</option>
+                            <option value={"discipline"}>Discipline</option>
+                        </select>
+                    </div>
+                    <div className='viewport-container'>
+                        <ul>
+                        {posts_data.map((item) => (
+                                <>
+                                <li key={item.id}>
+                                    <Modal className="Modal" post={item} breakpoint={breakpoint} />
+                                </li>
+                                </>
+                            ))}
+                        </ul>
+                    </div>
+                    {/*
+                    <div className='viewport-container'>
+                        <div className='spacer' />
+                        <ul>
+                            {filteredData.map((item) => (
+                                <>
+                                <li key={item.id}>
+                                    <Modal className="Modal" post={item} breakpoint={breakpoint} />
+                                </li>
+                                </>
+                            ))}
+                        </ul>
+                        <div className='spacer' />
+                    </div>
+                            */}
+                </div>
+            </div>    
+            
         </div>
-      ))}
-    </div>
-  );
+    )
 };
-
-const styles = {
-  container: {
-    width: 400,
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 20,
-  },
-  todo: { marginBottom: 15 },
-  input: {
-    border: "none",
-    backgroundColor: "#ddd",
-    marginBottom: 10,
-    padding: 8,
-    fontSize: 18,
-  },
-  todoName: { fontSize: 20, fontWeight: "bold" },
-  todoDescription: { marginBottom: 0 },
-  button: {
-    backgroundColor: "black",
-    color: "white",
-    outline: "none",
-    fontSize: 18,
-    padding: "12px 0px",
-  },
-} as const;
 
 export default Gallery;

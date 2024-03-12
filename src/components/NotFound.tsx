@@ -1,9 +1,9 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 //import NavBar from "../fragments/NavBar";
-import useWindowDimensions from "../code/WindowDimensions";
+import useWindowDimensions from "./code/WindowDimensions";
 
-import './../css/404.css';
+import './css/404.css';
 
 const NotFound = () => {
     

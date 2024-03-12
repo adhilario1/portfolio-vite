@@ -20,7 +20,7 @@ const Body = ({children}: Props) => {
         <div className={`main ${device}`}>
                 <div className={"bounding-box"}>
                     <div className="container">
-                        <div className="router ">
+                        <div className="router">
                             {children}
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 
-import Header from '../Header';
-import './../css/Exhibit.css'
+import Header from './Header';
+import './css/Exhibit.css'
 
 interface Props {
     breakpoint?: number;

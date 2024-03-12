@@ -2,15 +2,15 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 //Components
-import Header from '../Header';
-import Modal from "../frag/Modal";
+import Header from './Header';
+import Modal from "./frag/Modal";
 
 //style
-import './../css/Arcade.css';
+import './css/Arcade.css';
 
 //data
-import games from './../../assets/data/games.json';
-import GamePage from "./GamePage";
+import games from './../assets/data/games.json';
+import GamePage from './GamePage';
 
 
 interface Props {
