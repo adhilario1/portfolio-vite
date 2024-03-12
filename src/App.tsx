@@ -10,6 +10,7 @@ import Gallery from './components/Gallery'
 
 //css
 import './App.css'
+import Exhibit from './components/Exhibit'
 
 
 
@@ -21,6 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Body><Home /></Body>} />
+        <Route path='/projects/this-site' element={<Body><Exhibit /></Body>} />
         <Route path="/projects/gallery" element={<Body><Gallery /></Body>} />
       </Routes>
     </Router>
