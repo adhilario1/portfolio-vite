@@ -26,12 +26,14 @@ const Exhibit = ({breakpoint}: Props) => {
                         As mentioned this was built with the typescript version of ReactJS. The domain name registration and hosting is through AWS Route53 and Amplify respectively. The data base (if implemented by the time of reading) is also through AWS using their RDS service or DynamoDB if the 12 month free trial has since expired. <br /><br/> 
                     </p>
                     <h2 className='secondary-label'>So, Why The Name?</h2>
+                    {/*
                     <p className='formatted-text indented'>
                         Well, obviously the "adam" part is my first name, and while i could have used a standard extension <i>.com</i>, but the <i>.info</i> seemed apt. However, I assume any question about the domain, assuming their were any, is the "rev" prefix. Sure, if given the opportunity, I would have gladly taken any variation of just my name, but being given a relatively common name, the likelyhood of getting something like <i>adam.info</i> or even <i>adam.biz</i> (both taken) would be nigh impossible. 
                         <br/><br/>
                         However, on a whim in 2016, I became ordained by the Universal Life Church and so technically I'm a registered minister and therefore can be styled as Reverend. While not the exact type of employment I am currently looking for, I guess you can send me an email for inquiry.
 
                     </p>
+    */}
                     </p>
                 </div>
                 <div className='footnote'>
