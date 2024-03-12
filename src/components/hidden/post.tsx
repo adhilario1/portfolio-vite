@@ -21,7 +21,12 @@ const client = generateClient();
 interface Props {
     breakpoint?: number
 }
+
 const Gallery = ({breakpoint}: Props) => {
+    if (breakpoint) {
+        console.log("breakpoint used");
+    }
+    
   const [formState, setFormState] = useState<CreatePostsInput>(initialState);
   const [posts, setPosts] = useState<posts[] | CreatePostsInput[]>([]);
 

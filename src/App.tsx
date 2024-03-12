@@ -1,8 +1,6 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 
 
 //custom components
@@ -37,7 +35,6 @@ function App() {
   } else {
     device = "desktop";
   }
-  const [count, setCount] = useState(0)
 
   return (
     <div>

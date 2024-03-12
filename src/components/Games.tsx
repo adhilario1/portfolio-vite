@@ -1,5 +1,5 @@
 //React Libraries
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 //Components
 import Header from './Header';
@@ -10,7 +10,7 @@ import './css/Arcade.css';
 
 //data
 import games from './../assets/data/games.json';
-import GamePage from './GamePage';
+//import GamePage from './GamePage';
 
 
 interface Props {
@@ -18,22 +18,7 @@ interface Props {
 }
 
 const Games = ({breakpoint}: Props) => {
-    const [filter, setFilter] = useState('');
-    const [filteredData, setFilteredData] = useState(games);
-
-    const handleFilterChange = (event: React.FormEvent<HTMLSelectElement>) => {
-        event.preventDefault();
-        var safeSearchTypeValue: string = event.currentTarget.value;
-        setFilter(safeSearchTypeValue);
-        filterData(safeSearchTypeValue);
-    };
-
-    const filterData = (filter: string) => {
-        const filteredData = games.filter((item) => 
-            item.discipline.toLowerCase().includes(filter.toLowerCase())
-        );
-        setFilteredData(filteredData);
-    };
+    
 
     return (
         <>
@@ -46,7 +31,7 @@ const Games = ({breakpoint}: Props) => {
 
             <div className="viewport-container">
                 <ul>
-                    {filteredData.map((item) => (
+                    {games.map((item) => (
                         <>
                         <li key={item.id}>
                             <Modal className="Modal" game={item} breakpoint={breakpoint} />
