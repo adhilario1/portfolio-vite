@@ -27,7 +27,7 @@ const linktree = [
     },
     {
         "label": "this site",
-        "url": "/projects/web-dev"
+        "url": "/projects/this-site"
     },
     {
         "label": "contact",

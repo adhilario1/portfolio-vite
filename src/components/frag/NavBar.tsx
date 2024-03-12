@@ -26,7 +26,7 @@ const NavBar = () => {
                             <div className="nav-label">projects</div>
                             <div className="dropdown-content">
                             
-                                <Link className="nav-drop-item"  to="/projects/web-dev">
+                                <Link className="nav-drop-item"  to="/projects/this-site">
                                     <span>[</span>
                                     <span>   this site   </span>
                                     <span>]</span>
