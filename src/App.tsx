@@ -1,8 +1,6 @@
 //import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-
-
 //custom components
 import Body from './components/Body'
 import Home from './components/Home'
@@ -45,7 +43,7 @@ function App() {
         <Route path='/projects/this-site' element={<Body><Exhibit breakpoint={breakpoint} /></Body>} />
         <Route path="/projects/gallery" element={<Body><Gallery breakpoint={breakpoint}/></Body>} />
         <Route          
-          path="/games"
+          path="/games/"
           element={<Body><Games breakpoint={breakpoint} /></Body>}
         />              
         <Route 
@@ -54,23 +52,23 @@ function App() {
         />
 
         <Route
-          path='/about'
+          path='/about/'
             element={<Body><About breakpoint={breakpoint}/></Body>}
         />
         <Route  
-          path="/guestbook"
+          path="/guestbook/"
           element={<Body><Guestbook breakpoint={breakpoint}/></Body>}
         />
         <Route     
-          path="/contact/email"
+          path="/contact/email/"
           element={<Body><Contact breakpoint={breakpoint}/></Body>}
         />
         <Route
-          path='/test'
+          path='/test/'
           element={<Body><Test /></Body>} 
         />
         <Route
-          path='/admin'
+          path='/admin/'
           element={<Body><AdminLogin /></Body>} 
         />
         <Route 

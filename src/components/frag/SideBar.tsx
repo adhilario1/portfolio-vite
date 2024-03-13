@@ -12,27 +12,27 @@ const linktree = [
     },
     {
         "label": "gallery",
-        "url": "/projects/gallery"
+        "url": "/projects/gallery/"
     },
     {
         "label": "games",
-        "url": "/games"
+        "url": "/games/"
     },
     {
         "label": "about",
-        "url": "/about"
+        "url": "/about/"
     },
     {
         "label": "guestbook",
-        "url": "/guestbook"
+        "url": "/guestbook/"
     },
     {
         "label": "this site",
-        "url": "/projects/this-site"
+        "url": "/projects/this-site/"
     },
     {
         "label": "contact",
-        "url": "/contact/email"
+        "url": "/contact/email/"
     }
 ]
 

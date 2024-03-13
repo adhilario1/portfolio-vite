@@ -26,12 +26,12 @@ const NavBar = () => {
                             <div className="nav-label">projects</div>
                             <div className="dropdown-content">
                             
-                                <Link className="nav-drop-item"  to="/projects/this-site">
+                                <Link className="nav-drop-item"  to="/projects/this-site/">
                                     <span>[</span>
                                     <span>   this site   </span>
                                     <span>]</span>
                                 </Link>
-                                <Link className="nav-drop-item"  to="/projects/gallery" aria-label="gallery">
+                                <Link className="nav-drop-item"  to="/projects/gallery/" aria-label="gallery">
                                     <span>[</span>
                                     <span>   gallery   </span>
                                     <span>]</span>
@@ -41,21 +41,21 @@ const NavBar = () => {
                         </div>
                     </div>
                     <div className="nav-container">
-                        <Link className="navbar-item"  to="/games" aria-label="games">
+                        <Link className="navbar-item"  to="/games/" aria-label="games">
                             <span>[</span>
                             <span>   games!   </span>
                             <span>]</span>
                         </Link>
                     </div>
                     <div className="nav-container">
-                        <Link className="navbar-item" to="/about" aria-label="about">
+                        <Link className="navbar-item" to="/about/" aria-label="about">
                             <span>[</span>
                             <span>   about   </span>
                             <span>]</span>
                         </Link>
                     </div>
                     <div className="nav-container">
-                        <Link className="navbar-item" to="/guestbook" aria-label="guestbook">
+                        <Link className="navbar-item" to="/guestbook/" aria-label="guestbook">
                             <span>[ </span>
                             <span>   guestbook   </span>
                             <span>]</span>

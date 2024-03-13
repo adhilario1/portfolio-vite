@@ -29,19 +29,19 @@ const Footer = () => {
                             <div className="list-item-indicator">&larr;</div>
                         </li >
                         <li className="list-item" aria-label="gallery">
-                            <a href="/projects/gallery">gallery.</a>
+                            <a href="/projects/gallery/">gallery.</a>
                             <div className="list-item-indicator">&larr;</div>
                         </li>
                         <li className="list-item" aria-label="games">
-                            <a href="/games">games!</a>
+                            <a href="/games/">games!</a>
                             <div className="list-item-indicator">&larr;</div>
                         </li>
                         <li className="list-item" aria-label="about">
-                            <a href="/about">about.</a>
+                            <a href="/about/">about.</a>
                             <div className="list-item-indicator">&larr;</div>
                         </li>
                         <li className="list-item" aria-label="guestbook">
-                            <a href="/guestbook">guestbook.</a>
+                            <a href="/guestbook/">guestbook.</a>
                             <div className="list-item-indicator">&larr;</div>
                         </li>
                     </ul>
@@ -51,7 +51,7 @@ const Footer = () => {
                 <div className="secondary-label">contact</div>
                 <ul>
                     <li className="list-item" aria-label="email me">
-                        <a href="/contact/email">email.</a>
+                        <a href="/contact/email/">email.</a>
                         <div className="list-item-indicator">&larr;</div>
                     </li>
                 </ul>
